@@ -18,7 +18,7 @@ exports.TokenGenerate = (id,role,res)=>{
     })
 
     res.cookie("token", token , options ,
-        {   sameSite: "lax",   
+        {   sameSite: "none",   
             secure: true
         }
     )
