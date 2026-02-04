@@ -9,6 +9,10 @@ const Admin = require("./routes/Adminroutes")
 dotenv.config()
 
 const app = express()
+app.use(express.json())
+app.use(express.urlencoded({extended :true}))
+app.use(cookieParser())
+connectDB();
 app.use(
   cors({
     origin: ['http://localhost:5173',"http://localhost:5174","https://airline-booking-admin.vercel.app","https://airline-booking-user.vercel.app"],
@@ -17,10 +21,6 @@ app.use(
     allowedHeaders: ['Content-Type', 'Authorization']
   })
 )
-app.use(express.json())
-app.use(express.urlencoded({extended :true}))
-app.use(cookieParser())
-connectDB();
 
 app.use('/airline/users', Airline_User)
 app.use('/airline/users', userBooking)
