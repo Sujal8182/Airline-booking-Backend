@@ -11,7 +11,7 @@ dotenv.config()
 const app = express()
 app.use(
   cors({
-    origin: ['http://localhost:5173',"http://localhost:5174", "https://airline-booking-backend-58y6.onrender.com"],
+    origin: ['http://localhost:5173',"http://localhost:5174","https://airline-booking-admin.vercel.app/",],
     credentials: true,               
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
