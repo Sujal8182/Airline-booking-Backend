@@ -15,10 +15,20 @@ app.use(cookieParser())
 connectDB();
 app.use(
   cors({
-    origin: ['http://localhost:5173',"http://localhost:5174","https://airline-booking-admin.vercel.app","https://airline-booking-user.vercel.app"],
-    credentials: true,               
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    origin: (origin, callback) => {
+      const allowedOrigins = [
+        "http://localhost:5173",
+        "http://localhost:5174",
+        "https://airline-booking-admin.vercel.app",
+        "https://airline-booking-user.vercel.app",
+      ]
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true)
+      } else {
+        callback(new Error("Not allowed by CORS"))
+      }
+    },
+    credentials: true,
   })
 )
 
