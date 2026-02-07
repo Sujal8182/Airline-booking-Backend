@@ -18,12 +18,11 @@ exports.TokenGenerate = (id, role, res) => {
     //     // sameSite: isProduction ? "none" : "lax",
     //     // secure: isProduction,
     // })
-    const cookieDays = Number(process.env.JWS_OPT_EXPIRE || 1)
     res.cookie("token", token, {
-        httpOnly: true,
-        secure: isProduction,               // MUST be true for SameSite=None
-        sameSite: isProduction ? "none" : "lax",
-        maxAge: cookieDays * 24 * 60 * 60 * 1000, // safer than `expires`
-    })
+    httpOnly: true,
+    sameSite: "none", // REQUIRED for React + Express
+    secure: process.env.NODE_ENV === "production",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  });
     return token
 }
