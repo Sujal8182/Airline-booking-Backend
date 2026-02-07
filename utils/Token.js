@@ -40,8 +40,9 @@ exports.TokenGenerate = (id, role, res) => {
             Date.now() + process.env.JWS_OPT_EXPIRE * 24 * 60 * 60 * 1000
         ),
         httpOnly: true,
+        // Forces true on production; if Render uses HTTPS (which it does), this is required
+        secure: true,
         sameSite: "none",
-        secure: process.env.NODE_ENV === "production",
     })
     res.cookie("token", token, options);
     console.log(process.env.JWS_CODE);
