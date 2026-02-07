@@ -22,6 +22,8 @@ app.use(
   })
 )
 
+app.set("trust proxy", 1);
+
 app.use('/airline/users', Airline_User)
 app.use('/airline/users', userBooking)
 app.use('/airline/admin', Admin)
